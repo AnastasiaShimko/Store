@@ -8,29 +8,31 @@ namespace Store
 {
     public static class SampleData
     {
+        /// <summary>
+        /// LSP example.
+        /// Child class should not break parent class’s type definition and behavior.
+        /// Here we can see that Product class is replaceable with objects of its subclasses (Phone) without breaking the application.
+        /// </summary>
+        /// <param name="context"></param>
         public static void Initialize(StoreContext context)
         {
-            if (!context.Phones.Any())
+            if (!context.Products.Any())
             {
-                context.Phones.AddRange(
-                    new Phone
-                    {
-                        Name = "iPhone X",
-                        Company = "Apple",
-                        Price = 600
-                    },
-                    new Phone
-                    {
-                        Name = "Samsung Galaxy Edge",
-                        Company = "Samsung",
-                        Price = 550
-                    },
-                    new Phone
-                    {
-                        Name = "Pixel 3",
-                        Company = "Google",
-                        Price = 500
-                    }
+                var phoneClassObj = new Phone
+                {
+                    Name = "iPhone X",
+                    Company = "Apple",
+                    Price = 600
+                };
+                var productClassObj = new Product
+                {
+                    Name = "Huawei P20 Lite",
+                    Company = "Huawei ltd.",
+                    Price = 200
+                };
+                context.Products.AddRange(
+                    phoneClassObj,
+                    productClassObj
                 );
                 context.SaveChanges();
             }

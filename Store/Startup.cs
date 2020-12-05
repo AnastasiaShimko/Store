@@ -27,8 +27,11 @@ namespace Store
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            //Example of IoC container
-            services.AddTransient<IMessageSender, EmailMessageSender>();
+            // DIP example. 
+            // Constructor Injection.
+            // Adding constructor we make HomeController independent from the classes (EmailMessageSender, TelegramEmailSender)
+            // Example of IoC container.
+            services.AddSingleton<IMessageSender, EmailMessageSender>();
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
         }

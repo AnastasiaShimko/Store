@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Phone>
+﻿@model IEnumerable<Product>
 @{
     Layout = null;
 }
@@ -17,13 +17,13 @@
         <td>Price</td>
         <td></td>
     </tr>
-    @foreach (var phone in Model)
+    @foreach (var product in Model)
     {
         <tr>
-            <td>@phone.Name</td>
-            <td>@phone.Company</td>
-            <td>@phone.Price</td>
-            <td><a href="~/Home/Buy/@phone.Id">Buy</a></td>
+            <td>@product.Name</td>
+            <td>@product.Company</td>
+            <td>@product.Price</td>
+            <td><a href="~/Home/Buy/@product.Id">Buy</a></td>
         </tr>
     }
 </table>

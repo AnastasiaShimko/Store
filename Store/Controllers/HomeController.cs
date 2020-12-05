@@ -6,22 +6,30 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Store.Interfaces;
 
 namespace Store.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// DIP example.
+        /// HomeController class not depends on class EmailMessageSender or TelegramMessageSender.
+        /// It depends on interface, so we can easily change its logic by changing singleton service.
+        /// </summary>
         private readonly ILogger<HomeController> _logger;
+        private IMessageSender _messageSender;
         StoreContext db;
 
-        public HomeController(ILogger<HomeController> logger, StoreContext context)
+        public HomeController(ILogger<HomeController> logger, StoreContext context, IMessageSender messageSender)
         {
             db = context;
+            _messageSender = messageSender;
             _logger = logger;
         }
         public IActionResult Index()
         {
-            return View(db.Phones.ToList());
+            return View(db.Products.ToList());
         }
 
         public IActionResult Privacy()
@@ -50,9 +58,9 @@ namespace Store.Controllers
             order.ProductId = phoneId;
             db.Users.Add(user);
             db.Orders.Add(order);
-            // сохраняем в бд все изменения
-            //db.SaveChanges();
-            return "Thanks, " + order.User.Name + "!";
+            // Here _messageSender is EmailMessageSender
+            var sendMessageResult = _messageSender.Send(order);
+            return $"Thanks, {order.User.Name}! {sendMessageResult}";
         }
     }
 }
