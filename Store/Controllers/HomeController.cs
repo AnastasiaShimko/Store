@@ -34,5 +34,25 @@ namespace Store.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Buy(int? id)
+        {
+            if (id == null) return RedirectToAction("Index");
+            ViewBag.PhoneId = id;
+            return View();
+        }
+        [HttpPost]
+        public string Buy(User user, int phoneId)
+        {
+            Order order = new Order();
+            order.User = user;
+            order.ProductId = phoneId;
+            db.Users.Add(user);
+            db.Orders.Add(order);
+            // сохраняем в бд все изменения
+            //db.SaveChanges();
+            return "Thanks, " + order.User.Name + "!";
+        }
     }
 }

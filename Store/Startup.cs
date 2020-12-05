@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Store.Interfaces;
 using Store.Models;
 
 namespace Store
@@ -26,6 +27,8 @@ namespace Store
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
+            //Example of IoC container
+            services.AddTransient<IMessageSender, EmailMessageSender>();
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(connection));
             services.AddControllersWithViews();
         }

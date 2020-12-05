@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order information</title>
+</head>
+<body>
+<div>
+    <form method="post">
+        <input type="hidden" value="@ViewBag.PhoneId" name="PhoneId" />
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" name="Name" /> </td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td><input type="text" name="EmailAddress" /></td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td><input type="text" name="PhoneNumber" /></td>
+            </tr>
+            <tr><td><input type="submit" value="Send" /> </td><td></td></tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

@@ -6,15 +6,15 @@
  
 <html>
 <head>
-    <title>Интернет магазин</title>
+    <title>Online store</title>
 </head>
 <body>
-<h3>Смартфоны</h3>
+<h3>Phones</h3>
 <table>
     <tr>
-        <td>Модель</td>
-        <td>Производитель</td>
-        <td>Цена</td>
+        <td>Model</td>
+        <td>Manufacturer</td>
+        <td>Price</td>
         <td></td>
     </tr>
     @foreach (var phone in Model)
@@ -23,7 +23,7 @@
             <td>@phone.Name</td>
             <td>@phone.Company</td>
             <td>@phone.Price</td>
-            <td><a href="~/Home/Buy/@phone.Id">Купить</a></td>
+            <td><a href="~/Home/Buy/@phone.Id">Buy</a></td>
         </tr>
     }
 </table>
