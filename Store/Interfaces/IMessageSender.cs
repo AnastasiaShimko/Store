@@ -6,6 +6,11 @@ using Store.Models;
 
 namespace Store.Interfaces
 {
+    /// <summary>
+    /// OCP Example.
+    /// If we want to make one more message sender, then we will inherit from IMessageSender.
+    /// IMessageSender is open for extension but closed for modification.
+    /// </summary>
     interface IMessageSender
     {
         string Send(Order order);
