@@ -9,7 +9,7 @@ namespace Store.Models
     public class StoreContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Phone> Phones { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
         public StoreContext(DbContextOptions<StoreContext> options)

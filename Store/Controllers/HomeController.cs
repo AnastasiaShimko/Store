@@ -21,7 +21,7 @@ namespace Store.Controllers
         }
         public IActionResult Index()
         {
-            return View(db.Phones.ToList());
+            return View(db.Products.ToList());
         }
 
         public IActionResult Privacy()
